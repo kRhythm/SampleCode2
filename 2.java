@@ -192,6 +192,19 @@ public class graph_diff {
             return str;
             
 		}
+	 public static String getEntityOfTheLineNumber(Integer lineNumber,ArrayList<EntityInfo> listOfTheFile)
+    {
+        int indexOfTheLineNumber = binarySearch(listOfTheFile,0,listOfTheFile.size()-1,lineNumber);
+        EntityInfo Ei = listOfTheFile.get(indexOfTheLineNumber);
+        int start = Integer.parseInt(Ei.getStartLineNumber().toString().split(" |\\,")[1]);
+        int end = Integer.parseInt(Ei.getEndLineNumber().toString().split(" |\\,")[1]);
+        String EntityName = Ei.getEntityName();
+        if(  (lineNumber >= start) && (lineNumber <=end ))
+        {
+            return EntityName;
+        }
+        return null;
+    }
 		private static int binarySearch(Vector<Integer> arr, int l, int r, int x) 
 	    { 
 	        if (r >= l) { 
